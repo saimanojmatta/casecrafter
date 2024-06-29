@@ -1,113 +1,179 @@
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Image from "next/image";
-
-export default function Home() {
+import { ArrowRight, Check, Star } from "lucide-react";
+import { AnimatedTooltipPreview } from "@/components/ui/AnimatedTooltipPreview";
+import Phone from "@/components/Phone";
+import { InfiniteMovingCardsDemo } from "@/components/ui/InfiniteMovingCardDemo";
+import { Icons } from "@/components/Icons";
+import Link from "next/link";
+import { buttonVariants } from "@/components/ui/button";
+import { Reviews } from "@/components/Reviews";
+type Props = {};
+const page = (props: Props) => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="grainy-light bg-slate-50">
+      <section>
+        <MaxWidthWrapper className="pb-24 pt-10 sm:pb-32 lg:grid lg:grid-cols-3 lg:gap-x-0 lg:pb-52 lg:pt-24 xl:gap-x-8 xl:pt-32">
+          <div className="col-span-2 px-6 lg:px-0 lg:pt-4">
+            <div className="relative mx-auto flex flex-col items-center text-center lg:items-start lg:text-left">
+              <div className="absolute -top-20 left-0 hidden w-28 lg:block">
+                <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-50 via-slate-50/50" />
+                <Image
+                  src="/snake-1.png"
+                  alt="snake_image"
+                  width={100}
+                  height={100}
+                />
+              </div>
+              <h1 className="relative mt-16 w-fit text-balance text-5xl font-bold !leading-tight tracking-tight text-gray-900 md:text-6xl lg:text-7xl">
+                Your Image on a{" "}
+                <span className="bg-green-600 px-2 text-white">Custom</span>{" "}
+                PhoneCase
+              </h1>
+              <p className="mt-8 max-w-prose text-balance text-center text-lg md:text-wrap lg:pr-10 lg:text-left">
+                Capture Your favorite memories with your own,{""}
+                <span className="font-semibold">one-of-one</span>Phone case.
+                CaseCobra allows you to protect your memories,not just your
+                phone case
+              </p>
+
+              <ul className="mt-8 flex flex-col items-center space-y-2 text-left font-medium sm:items-start">
+                <div className="space-y-2">
+                  <li className="flex items-center gap-1.5 text-left">
+                    <Check className="h-5 w-5 shrink-0 text-green-600" />
+                    High-quality, durable material
+                  </li>
+                  <li className="flex items-center gap-1.5 text-left">
+                    <Check className="h-5 w-5 shrink-0 text-green-600" />5 year
+                    print guarantee
+                  </li>
+                  <li className="flex items-center gap-1.5 text-left">
+                    <Check className="h-5 w-5 shrink-0 text-green-600" />
+                    Modern iphone models supported
+                  </li>
+                </div>
+              </ul>
+
+              <div className="mt-12 flex flex-col items-center gap-5 sm:flex-row sm:items-start">
+                <AnimatedTooltipPreview />
+                <div className="flex flex-col items-center justify-between sm:items-start">
+                  <div className="flex gap-0.5">
+                    <Star className="h-4 w-4 fill-green-600 text-green-600" />
+                    <Star className="h-4 w-4 fill-green-600 text-green-600" />
+                    <Star className="h-4 w-4 fill-green-600 text-green-600" />
+                    <Star className="h-4 w-4 fill-green-600 text-green-600" />
+                    <Star className="h-4 w-4 fill-green-600 text-green-600" />
+                  </div>
+                  <p>
+                    <span className="font-semibold">1.250 </span>
+                    happy customers
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-span-full mt-32 flex h-fit w-full justify-center px-8 sm:px-16 md:px-0 lg:col-span-1 lg:mx-0 lg:mt-20">
+            <div className="relative md:max-w-xl">
+              <img
+                src="/your-image.png"
+                alt="your-image"
+                className="absolute -top-20 left-56 hidden w-40 select-none sm:block lg:hidden lg:w-52 xl:block"
+              />
+              <img
+                src="/line.png"
+                className="absolute -bottom-6 -left-6 w-20 select-none"
+              />
+              <Phone className="w-64" imgSrc="/testimonials/1.jpg" />
+            </div>
+          </div>
+        </MaxWidthWrapper>
+      </section>
+      {/* value proposition section */}
+
+      <section className="grainy-dark bg-slate-100 py-16">
+        <div>
+          <Reviews />
         </div>
-      </div>
+        <MaxWidthWrapper className="mt-8 flex flex-col items-center gap-16 sm:gap-32">
+          <div className="flex flex-col items-center gap-4 sm:gap-6 lg:flex-row">
+            <h2 className="order-1 mt-8 text-balance text-center text-5xl font-bold !leading-tight tracking-tight text-gray-900 md:text-6xl">
+              What our{" "}
+              <span className="relative px-2">
+                {" "}
+                customers{" "}
+                <Icons.underline className="pointer-events-none absolute inset-x-0 -bottom-6 hidden text-green-500 sm:block" />
+              </span>{" "}
+              say
+            </h2>
+            <img src="/snake-2.png" className="order-0 w-24 lg:order-2" />
+          </div>
+        </MaxWidthWrapper>
+      </section>
+      <InfiniteMovingCardsDemo />
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      {/* images sliders */}
+      <section>
+        <MaxWidthWrapper className="py-24">
+          <div className="mb-12 px-6 lg:px-8">
+            <div className="mx-auto max-w-2xl sm:text-center">
+              <h2 className="order-1 mt-2 text-balance text-center text-5xl font-bold !leading-tight tracking-tight text-gray-900 md:text-6xl">
+                Upload your photo and get{" "}
+                <span className="relative bg-green-600 px-2 text-white">
+                  your own case
+                </span>{" "}
+                now
+              </h2>
+            </div>
+          </div>
+          <div className="mx-auto max-w-6xl px-6 lg:px-8">
+            <div className="relative flex grid-cols-2 flex-col items-center gap-40 md:grid">
+              <img
+                src="/arrow.png"
+                alt="arrow Image"
+                className="absolute left-1/2 top-[25rem] z-10 -translate-x-1/2 -translate-y-1/2 rotate-90 md:top-1/2 md:rotate-0"
+              />
+              <div className="relative h-80 w-full max-w-sm rounded-xl bg-gray-900/5 ring-inset ring-gray-900/10 md:h-full md:justify-self-end lg:rounded-2xl">
+                <img
+                  src="/horse.jpg"
+                  className="h-full w-full rounded-md bg-white object-cover shadow-2xl ring-1 ring-gray-900/10"
+                />
+              </div>
+              <Phone className="w-60" imgSrc="/horse_phone.jpg" />
+            </div>
+          </div>
+          <ul className="mx-auto mt-12 w-fit max-w-prose space-y-2 sm:text-lg">
+            <li className="w-fit">
+              <Check className="mr-1.5 inline h-5 w-5 text-green-600" />
+              High-quality silicone material
+            </li>
+            <li className="w-fit">
+              <Check className="mr-1.5 inline h-5 w-5 text-green-600" />
+              Scratch- and fingerprint resistant coating
+            </li>
+            <li className="w-fit">
+              <Check className="mr-1.5 inline h-5 w-5 text-green-600" />
+              Wireless charging compatible
+            </li>
+            <li className="w-fit">
+              <Check className="mr-1.5 inline h-5 w-5 text-green-600" />5 year
+              print warranty
+            </li>
+            <div>
+              <Link
+                className={buttonVariants({
+                  size: "sm",
+                  className: "mx-auto mt-8",
+                })}
+                href={"/configure/upload"}
+              >
+                Create your case now <ArrowRight className="ml-1.5 h-4 w-4" />
+              </Link>
+            </div>
+          </ul>
+        </MaxWidthWrapper>
+      </section>
+    </div>
   );
-}
+};
+export default page;
