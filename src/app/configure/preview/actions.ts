@@ -18,7 +18,7 @@ export const createCheckOutsession = async ({
   }
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-  console.log(user?.id);
+
   if (!user) {
     throw new Error("you need to logged in!");
   }
@@ -49,7 +49,7 @@ export const createCheckOutsession = async ({
       },
     });
   }
-
+  console.log(`orderid:${order.id},userid:${user.id}`);
   const product = await stripe.products.create({
     name: "Custome Iphone Case",
     images: [configuration.imageUrl],

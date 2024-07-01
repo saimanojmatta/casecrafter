@@ -21,11 +21,17 @@ export async function POST(req: Request) {
         throw new Error("Missing user email");
       }
       const session = event.data.object as Stripe.Checkout.Session;
+
       const { userId, orderId } = session.metadata || {
         userId: null,
         orderId: null,
       };
-      if (!userId || orderId) throw new Error("Invalid request metadata");
+      console.log(session.metadata);
+      if (!userId || !orderId) {
+        throw new Error(
+          "Invalid request metadata userid,orderid is working or what",
+        );
+      }
       const billingAddress = session.customer_details?.address;
       const shippingAddress = session.shipping_details?.address;
       await db.order.update({
@@ -62,7 +68,7 @@ export async function POST(req: Request) {
   } catch (error) {
     console.error(error);
     return NextResponse.json(
-      { message: "someting went wrong! " },
+      { message: "someting went wrong  try again later! " },
       { status: 500 },
     );
   }
