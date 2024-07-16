@@ -22,7 +22,7 @@ const Page = (props: Props) => {
   });
   if (data?.success) {
     if (configId) {
-      localStorage.removeItem("cofigurationid");
+      localStorage.removeItem("configurationid");
       router.push(`/configure/preview?id=${configId}`);
     } else {
       router.push("/");

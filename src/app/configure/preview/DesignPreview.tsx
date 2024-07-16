@@ -22,7 +22,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   const { user } = useKindeBrowserClient();
   const tw = COLORS.find(
     (supportedColor) => supportedColor.value === color,
-  )?.value;
+  )?.tw;
   const { label: modelLabel } = MODELS.options.find(
     ({ value }) => value === model,
   )!;
@@ -33,7 +33,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   if (finish === "textured") {
     totalPrice += PRODUCT_PRICES.finish.textured;
   }
-  const { mutate: createPaymentSession } = useMutation({
+  const { mutate: createPaymentSession, isPending } = useMutation({
     mutationKey: ["get-checkout-session"],
     mutationFn: createCheckOutsession,
     onSuccess: ({ url }) => {
@@ -150,10 +150,13 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
             </div>
             <div className="mt-8 flex justify-end pb-12">
               <Button
+                isLoading={isPending}
+                disabled={isPending}
+                loadingText="Payment Loading"
                 onClick={() => handleCheckOut()}
                 className="px-4 sm:px-6 lg:px-8"
               >
-                CheckOut
+                Continue to Payment
                 <ArrowRight className="ml-1.5 inline h-4 w-4" />
               </Button>
             </div>

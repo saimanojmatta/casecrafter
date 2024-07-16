@@ -3,7 +3,9 @@ import { stripe } from "@/lib/stripe";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-
+import { Resend } from "resend";
+import OrderReceivedEmail from "@/components/Emails/OrderReceivedEmail";
+const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(req: Request) {
   try {
     const body = await req.text();
@@ -28,13 +30,11 @@ export async function POST(req: Request) {
       };
       console.log(session.metadata);
       if (!userId || !orderId) {
-        throw new Error(
-          "Invalid request metadata userid,orderid is working or what",
-        );
+        throw new Error("Invalid request metadata ");
       }
       const billingAddress = session.customer_details?.address;
       const shippingAddress = session.shipping_details?.address;
-      await db.order.update({
+      const updatedOrder = await db.order.update({
         where: {
           id: orderId || undefined,
         },
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
               country: shippingAddress?.country!,
               postalCode: shippingAddress!.postal_code!,
               street: shippingAddress?.line1!,
-              state: shippingAddress?.state,
+              state: shippingAddress?.state!,
             },
           },
           BillingAddress: {
@@ -61,6 +61,24 @@ export async function POST(req: Request) {
             },
           },
         },
+      });
+      await resend.emails.send({
+        from: "CaseCrafter <manojgoud7520@gmail.com>",
+        to: [event.data.object.customer_details.email],
+        subject: "Thanks for your order!",
+        react: OrderReceivedEmail({
+          orderId,
+          orderDate: updatedOrder.createdAt.toLocaleDateString(),
+          // @ts-ignore
+          shippingAddress: {
+            name: session.customer_details!.name!,
+            city: shippingAddress?.city!,
+            country: shippingAddress?.country!,
+            postalCode: shippingAddress!.postal_code!,
+            street: shippingAddress?.line1!,
+            state: shippingAddress?.state!,
+          },
+        }),
       });
     }
 
