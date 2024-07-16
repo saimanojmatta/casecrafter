@@ -3,6 +3,7 @@ import { CaseColor } from "@prisma/client";
 import { AspectRatio } from "./ui/aspect-ratio";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 type Props = {};
 const Phonepreview = ({
@@ -55,7 +56,7 @@ const Phonepreview = ({
 
       <div className="relative z-40 h-full w-full">
         <img
-          src="/clearPhone.png"
+          src="/clearphone.png"
           alt="clearphone"
           className="pointer-events-none h-full w-full rounded-md antialiased"
         />
